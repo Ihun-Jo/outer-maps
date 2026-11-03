@@ -1,0 +1,20 @@
+﻿source,target,type,note,source_url
+gimp,gnu,member_of,GNU 프로젝트 (GNU Image Manipulation Program),https://www.gimp.org
+inkscape,sfc,member_of,Software Freedom Conservancy 회원 프로젝트 (2015 재정 후원 계약 갱신),https://inkscape.org/news/2015/11/08/new-fsa-with-software-freedom-conservancy
+godot,sfc,member_of,2014년 오픈소스 이후 SFC 소속 → 2022-11 자체 재단으로 '졸업',https://godotengine.org/article/godots-graduation-godot-moves-to-a-new-foundation
+pixelfed,fediverse,member_of,ActivityPub 연합우주의 일부,https://en.wikipedia.org/wiki/Pixelfed
+blender,epic-games,funded_by,Epic MegaGrant 120만 달러 (2019-07),https://www.blendernation.com/2019/07/15/epic-games-supports-blender-foundation-with-1-2-million-epic-megagrant/
+godot,epic-games,funded_by,Epic MegaGrant 25만 달러 (2020),https://www.cgchannel.com/?p=112029
+krita,epic-games,funded_by,"Epic MegaGrant 2만 5천 달러 (2019-12, 품질 보증 개선)",https://www.cgchannel.com/2019/12/krita-wins-epic-megagrant
+krita,floss-fund,funded_by,"Zerodha FLOSS/fund 5만 달러 (2025-11, 안드로이드판·Drawpile 협업)",https://krita.org/en/posts/2025/floss-fund/
+pixelfed,nlnet,funded_by,NLnet·NGI0 공공 기금,https://nlnet.nl/project/Pixelfed/
+blender,anthropic,funded_by,개발 기금 후원 → 커뮤니티 우려 뒤 일회성 기부로 변경 (2026-05),https://80.lv/articles/blender-clarifies-ai-policy-and-amends-anthropic-donation
+penpot,decibel,funded_by,벤처 투자 800만 달러 (2022-09),https://techcrunch.com/2022/09/27/penpot-inks-8m-as-signups-for-its-open-source-spin-on-figma-jump-5600-after-adobes-20b-acquisition-move
+gimp,photoshop,opens_format_of,PSD 파일을 열 수 있음,https://www.gimp.org
+krita,photoshop,opens_format_of,PSD 파일을 열 수 있음,https://docs.krita.org
+scribus,indesign,opens_format_of,"IDML 가져오기 (개발 브랜치), PSD·AI 가져오기",https://en.wikipedia.org/wiki/Scribus
+gimp,krita,shares_format,OpenRaster(.ora) 공동 지원 (MyPaint·Scribus도),https://wiki.freedesktop.org/www/Specifications/OpenRaster/ApplicationSupport/
+tenacity,audacity,fork_of,Muse Group 인수(2021-04) 뒤 원격 수집·개인정보 정책 논란으로 2021-07 포크,https://tenacityaudio.org/docs/_content/Motivation.html
+opentoonz,toonz,fork_of,상용 Toonz(스튜디오 지브리 판)를 Dwango가 2016-03 오픈소스로 공개,https://en.wikipedia.org/wiki/Toonz
+krita,steam,distributes_via,Steam·Epic·Windows 스토어 유료판 판매로 개발비 충당 (소스·기본판은 무료),https://krita.org/en/posts/2023/krita-in-stores-update/
+w4-games,godot,spin_off_of,"Godot 리더들이 세운 영리 회사. 콘솔 이식 판매, 시드 850만 달러(2022)·1500만 달러(2023) 투자",https://techcrunch.com/2022/08/19/how-w4-plans-to-commercialize-the-godot-game-engine-by-following-red-hats-playbook

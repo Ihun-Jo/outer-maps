@@ -1,0 +1,13 @@
+﻿id,name,type,owner_or_note
+gnu,GNU 프로젝트,umbrella,
+sfc,Software Freedom Conservancy,umbrella,
+fediverse,연합우주 (ActivityPub),umbrella,
+epic-games,Epic Games,company,Unreal Engine 운영사 (상용 게임 엔진)
+floss-fund,FLOSS/fund (Zerodha),funder,
+nlnet,NLnet 재단,funder,NGI0 공공 기금 운영
+anthropic,Anthropic,company,
+decibel,Decibel,investor,벤처 캐피털
+tenacity,Tenacity,fork,Audacity 포크 (2021)
+toonz,Toonz,other-proprietary,OpenToonz의 원본 상용 소프트웨어
+steam,Steam,store,
+w4-games,W4 Games,company,Godot 리더들의 영리 회사

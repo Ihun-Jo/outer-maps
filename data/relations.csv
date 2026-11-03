@@ -1,0 +1,45 @@
+﻿source,target,type,note
+blender,substance-3d,alternative_to,
+blender,premiere-pro,alternative_to,
+blender,after-effects,alternative_to,
+godot,commercial-game-engines,alternative_to,
+gimp,photoshop,alternative_to,
+krita,photoshop,alternative_to,
+inkscape,illustrator,alternative_to,
+scribus,indesign,alternative_to,
+darktable,lightroom,alternative_to,
+rawtherapee,lightroom,alternative_to,
+kdenlive,premiere-pro,alternative_to,
+shotcut,premiere-pro,alternative_to,
+friction,after-effects,alternative_to,
+natron,after-effects,alternative_to,
+opentoonz,animate,alternative_to,
+synfig,animate,alternative_to,
+pencil2d,animate,alternative_to,
+ardour,audition,alternative_to,
+audacity,audition,alternative_to,
+penpot,xd,alternative_to,
+penpot,figma,alternative_to,
+cavalry,after-effects,alternative_to,
+itchio,big-game-stores,alternative_to,
+arena,behance-portfolio,alternative_to,
+arena,pinterest,alternative_to,
+stocksy,adobe-stock,alternative_to,
+velvetyne,adobe-fonts,alternative_to,
+collletttivo,adobe-fonts,alternative_to,
+pixelfed,behance-portfolio,alternative_to,
+pixelfed,instagram,alternative_to,
+neocities,adobe-portfolio,alternative_to,
+friction,enve,fork_of,Friction은 enve의 포크
+cavalry,canva,acquired_by,2026년 인수
+audacity,muse-group,owned_by,2021년부터
+stocksy,adobe-stock,distributes_via,배급 계약
+krita,kde,community_of,KDE 커뮤니티에서 출발
+kdenlive,kde,community_of,
+blender,godot,used_together,3D 에셋 → 게임
+darktable,gimp,used_together,현상 → 편집
+rawtherapee,gimp,used_together,현상 → 편집
+inkscape,scribus,used_together,진 제작 파이프라인
+gimp,scribus,used_together,진 제작 파이프라인
+velvetyne,scribus,used_together,진 조판 서체
+blender,cavalry,contrast,무료 근거: 라이선스 vs 회사 정책

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>모바일 지도 · 8분면</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400&amp;display=swap">
+<style>
+@font-face{font-family:"Pretendard";src:url(/_blob/a82d262564e00828e05be01f48dddf6e) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Pretendard";src:url(/_blob/e4a938c575b48c7ec0c7e2f0b757ad04) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Galmuri11";src:url(/_blob/61f69b10b22b9fd96d3297e757dbe1d0) format("woff2");font-display:swap}
+body{margin:0}
+a{color:#111}a:hover{color:#3a3a36}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #f1f1ee; color: #111111; font-family: Pretendard, sans-serif; position: relative; overflow: hidden">
+  <header style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid #c9c9c3">
+    <a href="#" style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 26px; letter-spacing: -0.5px; text-decoration: none">Outer Maps</a>
+    <nav style="display: flex; gap: 4px; align-items: center">
+      <a href="#" style="font-size: 14px; text-decoration: none; padding: 12px 8px">소개</a>
+      <button type="button" aria-label="메뉴 열기" style="width: 44px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; padding: 0">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+    </nav>
+  </header>
+
+  <div style="display: flex; align-items: center; gap: 8px; padding: 10px 16px 6px; overflow: hidden; white-space: nowrap">
+    <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #6b6b66; width: 28px; flex-shrink: 0">보기</span>
+    <button type="button" aria-pressed="true" style="font-family: Pretendard, sans-serif; font-size: 14px; font-weight: 700; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #111; background: #111; color: #fff">8분면</button>
+    <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">단면</button>
+    <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">한 줄</button>
+    <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">분류</button>
+    <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">지형도</button>
+  </div>
+  <div style="display: flex; align-items: center; gap: 6px; padding: 4px 16px 8px; overflow: hidden; white-space: nowrap; border-bottom: 1px solid #c9c9c3">
+    <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #6b6b66; width: 28px; flex-shrink: 0">모아</span>
+    <button type="button" aria-pressed="true" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: #111; color: #fff">전체 26</button>
+    <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">창작 도구 19</button>
+    <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">판매·유통 2</button>
+    <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">아카이빙 1</button>
+    <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">서체 2</button>
+  </div>
+
+  <div style="position: relative; height: 516px">
+    <svg width="390" height="516" viewBox="0 0 390 516" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+      <path d="{{cube}}" fill="none" stroke="#a9a9a2" stroke-width="1"></path>
+      <path d="{{mid}}" fill="none" stroke="#c9c9c3" stroke-width="1" stroke-dasharray="3 4"></path>
+    </svg>
+    <sc-for list="{{octants}}" as="o" hint-placeholder-count="2">
+      <span style="{{o.style}}">{{o.label}}</span>
+    </sc-for>
+    <sc-for list="{{axes}}" as="a" hint-placeholder-count="3">
+      <div style="{{a.style}}">
+        <span style="display: inline-block; background: #111; color: #fff; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 700">{{a.label}}</span>
+        <span style="display: block; font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36; margin-top: 4px">{{a.hint}}</span>
+      </div>
+    </sc-for>
+    <sc-for list="{{dots}}" as="d" hint-placeholder-count="26">
+      <button type="button" aria-label="{{d.name}}" style="{{d.style}}">{{d.init}}<sc-if value="{{d.grey}}" hint-placeholder-val="{{false}}"><span style="position: absolute; right: -6px; top: -6px; font-size: 12px; line-height: 1; background: #f1f1ee; border-radius: 999px; padding: 1px">◐</span></sc-if></button>
+    </sc-for>
+    <div style="{{hover.style}}">
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 300; font-size: 16px">Velvetyne</span>
+      <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">서체 · 연대 3</span>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; border-top: 1px solid #c9c9c3">
+    <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: #ffffff; color: #111; display: flex; align-items: center; gap: 8px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"></path><path d="M20 4v4h-4"></path></svg>
+      둘러보기
+    </button>
+    <a href="#" style="font-size: 14px; display: flex; align-items: center; gap: 6px; padding: 12px 0">
+      <span style="display: inline-flex; width: 20px; height: 20px; border: 1px solid #111; border-radius: 999px; align-items: center; justify-content: center; font-family: Galmuri11, monospace; font-size: 11px">i</span>
+      왜 이 세 축인가?
+    </a>
+  </div>
+  <div style="padding: 10px 16px; display: flex; justify-content: space-between; align-items: baseline">
+    <span style="font-size: 17px; font-weight: 700">목록</span>
+    <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #6b6b66">26개 · 아래로 ↓</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#9dff3a","options":["#9dff3a","#ff7a2b","#5ee0ff"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var accent = this.props.accent ?? '#9dff3a';
+    var D = [
+      ['Blender','Bl',3,3,3,1,'case'],['Godot','Go',3,3,3,1,'case'],['GIMP','Gi',3,2,3,0,'case'],['Krita','Kr',3,3,3,2,'case'],
+      ['Inkscape','In',3,2,3,1,'case'],['Scribus','Sc',3,2,3,0,'case'],['darktable','dt',3,2,3,0,'case'],['RawTherapee','RT',3,2,3,0,'case'],
+      ['Kdenlive','Kd',3,3,3,1,'case'],['Shotcut','Sh',2,2,2,0,'case'],['Friction','Fr',3,2,2,0,'case'],['Natron','Na',2,2,1,0,'grey'],
+      ['OpenToonz','OT',2,2,2,0,'case'],['Synfig','Sy',3,2,3,0,'case'],['Pencil2D','P2',3,2,3,0,'case'],['Ardour','Ar',3,2,2,0,'case'],
+      ['Audacity','Au',2,1,1,0,'grey'],['Penpot','Pe',2,1,1,0,'grey'],['Cavalry','Ca',1,0,0,0,'contrast'],['itch.io','it',2,1,2,2,'grey'],
+      ['Are.na','A.',3,2,2,2,'grey'],['Stocksy','St',2,3,1,2,'grey'],['Velvetyne','Ve',3,2,2,3,'case'],['Collletttivo','Co',2,2,2,1,'case'],
+      ['Pixelfed','Px',3,2,2,2,'case'],['Neocities','Ne',2,1,2,1,'case']
+    ];
+    var th = 38 * Math.PI / 180, ph = 22 * Math.PI / 180, S = 60, cx = 195, cy = 270;
+    function P(x, y, z) {
+      var X = x - 1.5, Y = z - 1.5, Z = y - 1.5;
+      var x1 = X * Math.cos(th) - Z * Math.sin(th);
+      var z1 = X * Math.sin(th) + Z * Math.cos(th);
+      var y2 = Y * Math.cos(ph) - z1 * Math.sin(ph);
+      var z2 = Y * Math.sin(ph) + z1 * Math.cos(ph);
+      return { x: cx + x1 * S, y: cy - y2 * S, d: z2 };
+    }
+    function seg(a, b) { var p = P(a[0], a[1], a[2]), q = P(b[0], b[1], b[2]); return 'M' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + 'L' + q.x.toFixed(1) + ' ' + q.y.toFixed(1); }
+    var cube = '', c = [0, 3];
+    for (var i = 0; i < 2; i++) for (var j = 0; j < 2; j++) {
+      cube += seg([0, c[i], c[j]], [3, c[i], c[j]]) + seg([c[i], 0, c[j]], [c[i], 3, c[j]]) + seg([c[i], c[j], 0], [c[i], c[j], 3]);
+    }
+    var mid = seg([1.5, 0, 0], [1.5, 3, 0]) + seg([0, 1.5, 0], [3, 1.5, 0]) + seg([1.5, 1.5, 0], [1.5, 1.5, 3]) + seg([0, 1.5, 1.5], [3, 1.5, 1.5]) + seg([1.5, 0, 1.5], [1.5, 3, 1.5]);
+    var groups = {}, pts = D.map(function (r) {
+      var p = { name: r[0], init: r[1], x: r[2], y: (r[3] + r[4]) / 2, z: r[5], layer: r[6] };
+      var k = p.x + '|' + p.y + '|' + p.z; (groups[k] = groups[k] || []).push(p); return p;
+    });
+    Object.keys(groups).forEach(function (k) {
+      var g = groups[k], n = g.length, r = n > 1 ? 10 + n * 3.2 : 0;
+      g.forEach(function (p, idx) { var a = (idx / n) * Math.PI * 2 - Math.PI / 2; p.ox = Math.cos(a) * r; p.oy = Math.sin(a) * r * 0.75; });
+    });
+    var dots = pts.map(function (p) {
+      var q = P(p.x, p.y, p.z), hot = p.name === 'Velvetyne';
+      var border = p.layer === 'contrast' ? '1.5px dashed #111' : '1px solid #111';
+      return {
+        name: p.name + (p.layer === 'grey' ? ' (회색지대)' : p.layer === 'contrast' ? ' (대조 사례)' : ''),
+        init: p.init, grey: p.layer === 'grey',
+        style: 'position:absolute;left:' + (q.x + p.ox - 16).toFixed(1) + 'px;top:' + (q.y + p.oy - 16).toFixed(1) + 'px;width:32px;height:32px;border-radius:999px;border:' + border + ';background:' + (hot ? accent : '#ffffff') + ';color:#111;font-family:\'Inter Tight\',sans-serif;font-weight:400;font-size:12px;display:flex;align-items:center;justify-content:center;padding:0;z-index:' + Math.round(200 + q.d * 20) + (hot ? ';box-shadow:0 0 0 3px #111' : '')
+      };
+    });
+    var hv = P(3, 2, 3);
+    var pill = 'position:absolute;font-family:Galmuri11,monospace;font-size:11px;border:1px dashed #6b6b66;color:#3a3a36;border-radius:999px;padding:3px 8px;background:#f1f1ee;white-space:nowrap;';
+    var o1 = P(3, 3, 3.3), o2 = P(0.2, 0.2, 0);
+    var ax = P(3.25, 0, 0), ay = P(0, 3.3, 0), az = P(0, 0, 3.2);
+    return {
+      cube: cube, mid: mid, dots: dots,
+      octants: [
+        { label: '운동하는 공유지', style: pill + 'left:' + (o1.x - 40).toFixed(0) + 'px;top:' + (o1.y - 30).toFixed(0) + 'px' },
+        { label: '무료지만 자유롭지 않은', style: pill + 'left:' + (o2.x - 60).toFixed(0) + 'px;top:' + (o2.y + 18).toFixed(0) + 'px' }
+      ],
+      axes: [
+        { label: '참여 →', hint: '소비 ↔ 공동 제작', style: 'position:absolute;left:' + (ax.x - 70).toFixed(0) + 'px;top:' + (ax.y + 6).toFixed(0) + 'px;text-align:right;width:120px' },
+        { label: '독립 ↗', hint: '이윤 추출 ↔ 공동 소유', style: 'position:absolute;left:' + (ay.x - 10).toFixed(0) + 'px;top:' + (ay.y - 56).toFixed(0) + 'px;width:140px' },
+        { label: '연대 ↑', hint: '도구 안 ↔ 세계와 연대', style: 'position:absolute;left:' + (az.x - 50).toFixed(0) + 'px;top:' + (az.y - 54).toFixed(0) + 'px;width:140px' }
+      ],
+      hover: { style: 'position:absolute;left:' + (hv.x + 18).toFixed(0) + 'px;top:' + (hv.y - 60).toFixed(0) + 'px;background:#ffffff;border:1px solid #111;padding:6px 10px;display:flex;flex-direction:column;gap:2px;z-index:900' }
+    };
+  }
+}
+</script>
+</body>
+</html>

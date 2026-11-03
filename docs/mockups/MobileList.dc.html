@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>모바일 목록 그리드</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400&amp;display=swap">
+<style>
+@font-face{font-family:"Pretendard";src:url(/_blob/a82d262564e00828e05be01f48dddf6e) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Pretendard";src:url(/_blob/e4a938c575b48c7ec0c7e2f0b757ad04) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Galmuri11";src:url(/_blob/61f69b10b22b9fd96d3297e757dbe1d0) format("woff2");font-display:swap}
+body{margin:0}
+a{color:#111}a:hover{color:#3a3a36}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #f1f1ee; color: #111111; font-family: Pretendard, sans-serif; overflow: hidden">
+  <header style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid #c9c9c3">
+    <span style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 26px; letter-spacing: -0.5px">Outer Maps</span>
+    <span style="font-size: 14px">소개 · ☰</span>
+  </header>
+  <div style="padding: 16px 16px 12px; display: flex; justify-content: space-between; align-items: baseline">
+    <h2 style="margin: 0; font-size: 22px; font-weight: 700">목록</h2>
+    <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">26개 · 이름순 ▾</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #c9c9c3">
+    <sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+      <a href="#" style="{{c.cell}}">
+        <span style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">{{c.cat}}</span>
+          <span style="font-family: Galmuri11, monospace; font-size: 11px">{{c.mark}}</span>
+        </span>
+        <span style="{{c.disc}}">{{c.init}}</span>
+        <span style="display: flex; flex-direction: column; gap: 2px">
+          <span style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 28px; line-height: 1.05">{{c.name}}</span>
+          <span style="font-size: 13px">{{c.ko}}</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 3px; font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">
+          <span>참여 {{c.p}} · 독립 {{c.i}} · 연대 {{c.s}}</span>
+          <span>{{c.url}}</span>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var rows = [
+      ['tool · 3d', '', 'Bl', 'Blender', '3D·영상·애니메이션', 3, 3, 1, 'blender.org', 'case'],
+      ['tool · image', '', 'Gi', 'GIMP', '사진·이미지 편집', 3, 2.5, 0, 'gimp.org', 'case'],
+      ['sale', '◐', 'it', 'itch.io', '유통·마켓플레이스', 2, 1.5, 2, 'itch.io', 'grey'],
+      ['archive', '◐', 'A.', 'Are.na', '큐레이션·연결', 3, 2, 2, 'are.na', 'grey'],
+      ['type', '', 'Ve', 'Velvetyne', '서체 파운드리', 3, 2, 3, 'velvetyne.fr', 'case'],
+      ['tool · motion', '대조', 'Ca', 'Cavalry', '모션 그래픽', 1, 0, 0, 'cavalry.studio', 'contrast']
+    ];
+    var cards = rows.map(function (r, i) {
+      var right = i % 2 === 0 ? 'border-right:1px solid #c9c9c3;' : '';
+      return {
+        cat: r[0], mark: r[1], init: r[2], name: r[3], ko: r[4], p: r[5], i: r[6], s: r[7], url: r[8],
+        cell: 'display:flex;flex-direction:column;gap:12px;padding:14px;min-height:248px;box-sizing:border-box;border-bottom:1px solid #c9c9c3;text-decoration:none;color:#111;' + right,
+        disc: 'width:52px;height:52px;border-radius:999px;border:' + (r[9] === 'contrast' ? '1.5px dashed #111' : '1px solid #111') + ';background:#ffffff;display:flex;align-items:center;justify-content:center;font-family:\'Inter Tight\',sans-serif;font-size:16px;margin:6px 0'
+      };
+    });
+    return { cards: cards };
+  }
+}
+</script>
+</body>
+</html>

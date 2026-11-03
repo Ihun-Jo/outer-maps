@@ -1,0 +1,15 @@
+{
+  "name": "outer-maps",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Outer Maps: 창의적 구름, 그 너머를 상상하는 대안적 플랫폼 지도",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "serve": "node build/serve.mjs"
+  },
+  "devDependencies": {
+    "pretendard": "^1.3.9",
+    "three": "^0.187.0"
+  }
+}

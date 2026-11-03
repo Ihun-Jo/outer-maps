@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>모바일 사례 카드 시트</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400&amp;display=swap">
+<style>
+@font-face{font-family:"Pretendard";src:url(/_blob/a82d262564e00828e05be01f48dddf6e) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Pretendard";src:url(/_blob/e4a938c575b48c7ec0c7e2f0b757ad04) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Galmuri11";src:url(/_blob/61f69b10b22b9fd96d3297e757dbe1d0) format("woff2");font-display:swap}
+body{margin:0}
+a{color:#111}a:hover{color:#3a3a36}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #f1f1ee; color: #111111; font-family: Pretendard, sans-serif; position: relative; overflow: hidden">
+  <header style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid #c9c9c3">
+    <span style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 26px; letter-spacing: -0.5px">Outer Maps</span>
+    <span style="font-size: 14px">소개 · ☰</span>
+  </header>
+  <div style="position: relative; height: 340px">
+    <svg width="390" height="340" viewBox="0 0 390 340" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+      <path d="M70 230 L230 290 L330 190 L170 140 Z M70 230 L70 80 M230 290 L230 140 M330 190 L330 40 M170 140 L170 -10 M70 80 L230 140 L330 40 M230 140 L170 -10" fill="none" stroke="#c9c9c3" stroke-width="1"></path>
+    </svg>
+    <sc-for list="{{ghost}}" as="g" hint-placeholder-count="14">
+      <span style="{{g}}"></span>
+    </sc-for>
+    <span style="position: absolute; left: 216px; top: 96px; width: 36px; height: 36px; border-radius: 999px; border: 1px solid #111; background: {{accent}}; box-shadow: 0 0 0 3px #111; font-family: 'Inter Tight', sans-serif; font-size: 13px; display: flex; align-items: center; justify-content: center">Kr</span>
+  </div>
+
+  <section aria-label="Krita 사례 카드" style="position: absolute; left: 0; right: 0; bottom: 0; height: 470px; background: #ffffff; border-top: 1px solid #111; border-radius: 8px 8px 0 0; box-sizing: border-box; padding: 10px 16px 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: center">
+      <span style="width: 40px; height: 4px; border-radius: 999px; background: #a9a9a2"></span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">창작 도구 · 이미지</span>
+      <span style="font-family: Galmuri11, monospace; font-size: 11px; background: #111; color: #fff; border-radius: 999px; padding: 3px 9px">운동하는 공유지</span>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: center">
+      <span style="width: 64px; height: 64px; border-radius: 999px; border: 1px solid #111; display: flex; align-items: center; justify-content: center; flex-shrink: 0" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-8 8H6v-6z"></path><path d="M11 7l6 6"></path><path d="M6 18l-2 2"></path></svg>
+      </span>
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 36px; line-height: 1.05">Krita</span>
+        <span style="font-size: 15px">크리타 · 디지털 페인팅</span>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 16px; line-height: 1.65">화가를 위한 도구를 표방한다. KDE 커뮤니티에서 출발해 지금은 Krita 재단이 기부와 개발 기금으로 운영한다.</p>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; border-top: 1px solid #c9c9c3; border-bottom: 1px solid #c9c9c3; padding: 12px 0">
+      <sc-for list="{{axes}}" as="a" hint-placeholder-count="5">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">{{a.k}}</span>
+          <span style="display: flex; gap: 2px" aria-hidden="true">
+            <sc-for list="{{a.bars}}" as="b" hint-placeholder-count="3"><span style="{{b}}"></span></sc-for>
+          </span>
+          <span style="font-family: Galmuri11, monospace; font-size: 11px">{{a.v}} / 3</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36; display: flex; flex-direction: column; gap: 4px">
+      <span>GPL · 기부·개발 기금</span>
+      <span>연대 근거: 공식 포럼 AI 통합 플러그인 금지 (2026-04)</span>
+    </div>
+    <div style="display: flex; gap: 8px; margin-top: auto">
+      <a href="#" style="flex: 1; height: 44px; border: 1px solid #111; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px">공식 사이트</a>
+      <a href="#" style="flex: 1; height: 44px; border: 1px solid #111; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px">다운로드</a>
+      <a href="#" style="flex: 1; height: 44px; border-radius: 999px; background: #111; color: #fff; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; font-weight: 700">자세히 →</a>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#9dff3a","options":["#9dff3a","#ff7a2b","#5ee0ff"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var spots = [[90,160],[120,190],[150,120],[180,210],[205,150],[250,170],[270,120],[300,100],[150,240],[110,250],[240,230],[280,210],[200,60],[130,80]];
+    var ghost = spots.map(function (s) { return 'position:absolute;left:' + s[0] + 'px;top:' + s[1] + 'px;width:28px;height:28px;border-radius:999px;border:1px solid #a9a9a2;background:#f7f7f4'; });
+    var vals = [['소유', 3], ['재정', 3], ['개방', 3], ['참여', 3], ['연대', 2]];
+    var axes = vals.map(function (v) {
+      var bars = [0, 1, 2].map(function (i) { return 'width:100%;height:10px;' + (i < v[1] ? 'background:#111' : 'border:1px solid #111;box-sizing:border-box'); });
+      return { k: v[0], v: v[1], bars: bars };
+    });
+    return { ghost: ghost, axes: axes, accent: this.props.accent ?? '#9dff3a' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿id,name,confidence,evidence,tension,source_solidarity
+blender,Blender,중,"AI 정책 공개: '사람이 사람을 위해 만든 도구', 생성형 AI 기능 통합 계획 없음. 커뮤니티 우려 뒤 Anthropic 기부를 일회성으로 변경 (2026-05-01)",AI 기업 후원을 받으면서 거리 두기를 함께 함,https://80.lv/articles/blender-clarifies-ai-policy-and-amends-anthropic-donation
+godot,Godot,중,"공식 계정의 포용성 발언 뒤 차단 논란, 재단이 성명과 이의 신청 양식 공개 (2024-09-30)",논란 뒤 포크(Redot) 발생. 연대 행동이라기보다 커뮤니티 운영 갈등,https://itsfoss.com/news/godot-engine-fiasco/
+gimp,GIMP,낮음,도구 바깥 의제에 대한 공식 표명 미발견,확인 필요: GNOME 행동강령 적용 여부,
+krita,Krita,중,"공식 포럼에서 AI 통합 플러그인·AI 생성 코드 금지, 'Krita 코어는 AI 없이 유지' (2026-04-15). 무단 학습 반대를 담은 「Commitment to Empowering Human Artists」 제안(채택 여부 미확인)",CEHA는 제안 단계,https://krita-artists.org/t/plugins-and-tools-with-integrated-ai-ai-dependencies-or-vibed-ai-generated-code-are-no-longer-tolerated-on-the-forum/179552 ; https://invent.kde.org/graphics/krita/-/merge_requests/2071
+inkscape,Inkscape,높음,포용적 언어 등을 담은 커뮤니티 행동강령. 자유 소프트웨어 옹호 단체 Software Freedom Conservancy 회원 프로젝트,도구 바깥 의제 행동은 미발견,https://inkscape.org/community/coc ; https://inkscape.org/news/2015/11/08/new-fsa-with-software-freedom-conservancy
+scribus,Scribus,낮음,공식 표명 미발견,확인 필요,
+darktable,darktable,낮음,공식 표명 미발견,확인 필요,
+rawtherapee,RawTherapee,낮음,공식 표명 미발견,확인 필요,
+kdenlive,Kdenlive,낮음,"상위 커뮤니티 KDE의 KDE Eco: 에너지 효율적 자유 소프트웨어 운동, Okular 블루엔젤 인증(2022)",Kdenlive 자체가 아니라 KDE 차원의 근거,https://eco.kde.org
+shotcut,Shotcut,낮음,공식 표명 미발견,확인 필요,
+friction,Friction,낮음,공식 표명 미발견,확인 필요,
+natron,Natron,낮음,공식 표명 미발견,확인 필요,
+opentoonz,OpenToonz,낮음,공식 표명 미발견,확인 필요,
+synfig,Synfig,낮음,공식 표명 미발견,확인 필요,
+pencil2d,Pencil2D,낮음,공식 표명 미발견,확인 필요,
+ardour,Ardour,낮음,공식 표명 미발견,확인 필요,
+audacity,Audacity,중,연대 근거 없음. 2021년 Muse Group 인수 뒤 개인정보 처리방침(법 집행 기관 제공 조항 등)으로 '스파이웨어' 논란,반대 방향의 사례로 기록할 만함,https://www.engadget.com/audacity-privacy-policy-spyware-accusations-data-collection-210001803.html
+penpot,Penpot,낮음,'디자인의 자유'·개방 표준 등 도구 안쪽 가치만 확인. 2022년 800만 달러 투자 유치,확인 필요: 행동강령 등,https://techcrunch.com/2022/09/27/penpot-inks-8m-as-signups-for-its-open-source-spin-on-figma-jump-5600-after-adobes-20b-acquisition-move
+cavalry,Cavalry,높음,"연대 근거 없음. Canva가 광고 기술 AI 기업 MangoAI와 함께 인수(2026-02), 이후 무료화(2026-04)",대조 사례,https://www.cgchannel.com/2026/04/canva-makes-motion-graphics-and-animation-app-cavalry-free/
+itchio,itch.io,높음,"대규모 모금 번들 반복: 인종 정의 번들(2020, 법률 기금, 약 850만 달러), 팔레스타인 구호 번들(2021, UNRWA, 약 90만 달러), 우크라이나 번들(2022, 나흘 만에 560만 달러 이상)",2025-07 결제사·Collective Shout 압력으로 성인 콘텐츠 비노출 처리. 결제망 앞의 한계,https://www.pcgamer.com/au/itchios-palestinian-relief-bundle-wraps-up-at-dollar900000/ ; https://www.rit.edu/giving/news/rit-alumnus-supported-bundle-ukraine-raises-more-56-million-four-days ; https://itch.io/updates/update-on-nsfw-content
+arena,Are.na,중,"'업계에 광고 없는 사업과 윤리적 디자인 확산' 명시, 공익 법인(PBC) 전환과 회원 보상 구조 계획, 회원 대상 연구 지원금 계획. Exit to Community(E2C) 2020 동료 학습 코호트 참여",대부분 계획·선언 단계,https://www.are.na/about ; https://git.medlab.host/e2c/e2c-how/src/branch/main/content/case-studies/arena.md
+stocksy,Stocksy,높음,"작가·직원·자문 3계층 협동조합, 1인 1표, 라이선스 수익 50~75% 배분과 연말 이익 배당. DEIB를 존재 근거로 명시, 고정관념·성적 대상화·문화 전유 콘텐츠 검토",노동 협동조합 모델 자체를 3으로 볼지 논의 필요,https://en.wikipedia.org/wiki/Stocksy_United ; https://support.stocksy.com/hc/en-us/articles/201654486-What-are-Stocksy-s-values-and-principles
+velvetyne,Velvetyne,높음,"공식 사이트에서 경찰 폭력 반대, 고교생 파업 지지, 공교육 자원 확대 요구, 반인종주의 법률 지원팀(Legal Team Antiraciste) 모금 링크. 디지털 주권과 상업 SNS 비판(2020 인터뷰)",3점 판정: 자유 서체 운동을 넘어 반인종주의·교육·경찰 폭력 의제에 공개적으로 연대 (2026-11-03 검토),https://velvetyne.alwaysdata.net/about/faq/ ; https://type-01.com/pioneering-alternative-design-and-cultures-with-velvetyne-type-foundry/
+collletttivo,Collletttivo,중,"「Open Source in Hyper-Capitalism」(2023-02-01): 지식 접근의 개방, 창작을 시장 논리 밖에 두기, 회원 노동과 기부로 운영",도구 바깥 행동은 미발견,https://collletttivo.it/journal/open-source-hyper-capitalism
+pixelfed,Pixelfed,중,"제3자 추적·분석 없음, 알고리즘 없는 시간순 타임라인. NLnet·NGI 공공 기금. 2025-01 Meta가 Pixelfed 링크 차단 보도",감시 반대가 alt_target(플랫폼 알고리즘)과 겹침,https://en.wikipedia.org/wiki/Pixelfed ; https://www.404media.co/meta-is-blocking-links-to-decentralized-instagram-competitor-pixelfed/ ; https://nlnet.nl/project/Pixelfed/
+neocities,Neocities,중,"광고·워터마크 없음, '마케터나 AI 기업에 데이터를 팔지 않음', 독립 웹 정신의 보루 표방",선언 수준,https://neocities.org/about

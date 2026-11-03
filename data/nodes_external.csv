@@ -1,0 +1,24 @@
+﻿id,name,type,owner
+photoshop,Photoshop,cloud-tool,Adobe
+illustrator,Illustrator,cloud-tool,Adobe
+indesign,InDesign,cloud-tool,Adobe
+lightroom,Lightroom,cloud-tool,Adobe
+premiere-pro,Premiere Pro,cloud-tool,Adobe
+after-effects,After Effects,cloud-tool,Adobe
+animate,Animate,cloud-tool,Adobe
+audition,Audition,cloud-tool,Adobe
+xd,XD,cloud-tool,Adobe
+substance-3d,Substance 3D,cloud-tool,Adobe
+adobe-stock,Adobe Stock,cloud-service,Adobe
+adobe-fonts,Adobe Fonts,cloud-service,Adobe
+behance-portfolio,Behance / Portfolio,cloud-service,Adobe
+adobe-portfolio,Adobe Portfolio,cloud-service,Adobe
+figma,Figma,other-proprietary,Figma
+commercial-game-engines,상용 게임 엔진,other-proprietary,
+big-game-stores,대형 게임 스토어,other-proprietary,
+pinterest,Pinterest,other-proprietary,Pinterest
+instagram,Instagram,other-proprietary,Meta
+canva,Canva,company,Canva
+muse-group,Muse Group,company,Muse Group
+enve,enve,tool-discontinued,
+kde,KDE,community,

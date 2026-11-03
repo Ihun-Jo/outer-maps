@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>데스크톱 지도와 카드 패널</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400&amp;display=swap">
+<style>
+@font-face{font-family:"Pretendard";src:url(/_blob/a82d262564e00828e05be01f48dddf6e) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Pretendard";src:url(/_blob/e4a938c575b48c7ec0c7e2f0b757ad04) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Galmuri11";src:url(/_blob/61f69b10b22b9fd96d3297e757dbe1d0) format("woff2");font-display:swap}
+body{margin:0}
+a{color:#111}a:hover{color:#3a3a36}
+</style>
+</helmet>
+<div style="background: #f1f1ee; color: #111111; font-family: Pretendard, sans-serif; min-height: 1180px">
+  <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 32px; border-bottom: 1px solid #c9c9c3">
+    <div style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap">
+      <a href="#" style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 44px; letter-spacing: -1px; text-decoration: none; line-height: 1">Outer Maps</a>
+      <span style="font-size: 15px; color: #3a3a36">창의적 구름, 그 너머를 상상하는 대안적 플랫폼 지도</span>
+    </div>
+    <nav style="display: flex; gap: 20px; font-size: 15px; flex-wrap: wrap">
+      <a href="#" style="text-decoration: none; padding: 10px 0">소개</a>
+      <a href="#" style="text-decoration: none; padding: 10px 0">읽을거리</a>
+      <a href="#" style="text-decoration: none; padding: 10px 0">크레딧</a>
+      <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #6b6b66; padding: 12px 0">v0.1</span>
+    </nav>
+  </header>
+
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; padding: 14px 32px; border-bottom: 1px solid #c9c9c3">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+      <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #6b6b66">보기</span>
+      <button type="button" aria-pressed="true" style="font-family: Pretendard, sans-serif; font-size: 14px; font-weight: 700; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: #111; color: #fff">8분면</button>
+      <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">단면</button>
+      <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">한 줄</button>
+      <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">분류</button>
+      <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">지형도</button>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px">
+      <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #6b6b66">모아</span>
+      <button type="button" aria-pressed="true" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: #111; color: #fff">전체 26</button>
+      <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">창작 도구 19</button>
+      <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">판매·유통 2</button>
+      <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">아카이빙·큐레이션 1</button>
+      <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">공유·연결 1</button>
+      <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">웹 출판 1</button>
+      <button type="button" style="font-family: Galmuri11, monospace; font-size: 11px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #111; background: transparent; color: #111">서체 2</button>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; border-bottom: 1px solid #c9c9c3">
+    <div style="flex: 999 1 560px; min-width: 0; position: relative; height: 640px; overflow: hidden; border-right: 1px solid #c9c9c3">
+      <div style="position: absolute; left: 50%; top: 0; width: 760px; height: 640px; margin-left: -380px">
+        <svg width="760" height="640" viewBox="0 0 760 640" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+          <path d="{{cube}}" fill="none" stroke="#a9a9a2" stroke-width="1"></path>
+          <path d="{{mid}}" fill="none" stroke="#c9c9c3" stroke-width="1" stroke-dasharray="3 4"></path>
+        </svg>
+        <sc-for list="{{octants}}" as="o" hint-placeholder-count="3">
+          <span style="{{o.style}}">{{o.label}}</span>
+        </sc-for>
+        <sc-for list="{{axes}}" as="a" hint-placeholder-count="3">
+          <div style="{{a.style}}">
+            <span style="display: inline-block; background: #111; color: #fff; border-radius: 999px; padding: 5px 12px; font-size: 14px; font-weight: 700">{{a.label}}</span>
+            <span style="display: block; font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36; margin-top: 5px">{{a.hint}}</span>
+          </div>
+        </sc-for>
+        <sc-for list="{{dots}}" as="d" hint-placeholder-count="26">
+          <button type="button" aria-label="{{d.name}}" style="{{d.style}}">{{d.init}}<sc-if value="{{d.grey}}" hint-placeholder-val="{{false}}"><span style="position: absolute; right: -6px; top: -6px; font-size: 13px; line-height: 1; background: #f1f1ee; border-radius: 999px; padding: 1px">◐</span></sc-if></button>
+        </sc-for>
+      </div>
+      <div style="position: absolute; left: 24px; bottom: 20px; display: flex; gap: 10px; align-items: center">
+        <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: #fff">회전 멈추기</button>
+        <button type="button" style="font-family: Pretendard, sans-serif; font-size: 14px; height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #111; background: #fff">정면에서 보기</button>
+      </div>
+      <a href="#" style="position: absolute; right: 24px; bottom: 28px; font-size: 14px">ⓘ 왜 이 세 축인가?</a>
+    </div>
+
+    <aside aria-label="Are.na 사례 카드" style="flex: 1 1 360px; min-width: 0; background: #ffffff; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">아카이빙·큐레이션</span>
+        <span style="display: flex; gap: 6px; align-items: center">
+          <span style="font-family: Galmuri11, monospace; font-size: 11px; border: 1px solid #111; border-radius: 999px; padding: 3px 9px">◐ 회색지대</span>
+          <button type="button" aria-label="카드 닫기" style="width: 36px; height: 36px; border: 0; background: transparent; font-size: 18px">×</button>
+        </span>
+      </div>
+      <div style="display: flex; gap: 16px; align-items: center">
+        <span style="width: 72px; height: 72px; border-radius: 999px; border: 1px solid #111; background: {{accent}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="7"></rect><rect x="14" y="13" width="7" height="7"></rect><path d="M10 7.5h4.5v5.5"></path></svg>
+        </span>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 44px; line-height: 1">Are.na</span>
+          <span style="font-size: 15px">큐레이션·연결</span>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 16px; line-height: 1.65">알고리즘 대신 손으로 잇는 공간. 광고 없이 회원 구독으로 운영하고, 2018년 크라우드펀딩 투자자 약 850명 대부분이 회원이다.</p>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; border-top: 1px solid #c9c9c3; border-bottom: 1px solid #c9c9c3; padding: 14px 0">
+        <sc-for list="{{glyph}}" as="a" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">{{a.k}}</span>
+            <span style="display: flex; gap: 2px" aria-hidden="true"><sc-for list="{{a.bars}}" as="b" hint-placeholder-count="3"><span style="{{b}}"></span></sc-for></span>
+            <span style="font-family: Galmuri11, monospace; font-size: 11px">{{a.v}} / 3</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36; line-height: 1.6">
+        <span>칸: 운동하는 공유지</span>
+        <span>독점 코드 · 회원 구독, 외부 투자 없음</span>
+        <span>긴장: 코드 비공개, 커뮤니티 소유 전환 진행 중</span>
+      </div>
+      <div style="display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap">
+        <a href="#" style="flex: 1 1 140px; height: 44px; border: 1px solid #111; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px">공식 사이트</a>
+        <a href="#" style="flex: 1 1 140px; height: 44px; border-radius: 999px; background: #111; color: #fff; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 14px; font-weight: 700">자세히 →</a>
+      </div>
+    </aside>
+  </div>
+
+  <div style="padding: 24px 32px 12px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px">
+    <h2 style="margin: 0; font-size: 24px; font-weight: 700">목록</h2>
+    <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">26개 · 지도와 같은 내용</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); border-top: 1px solid #c9c9c3; border-left: 1px solid #c9c9c3">
+    <sc-for list="{{cards}}" as="c" hint-placeholder-count="4">
+      <a href="#" style="display: flex; flex-direction: column; gap: 12px; padding: 18px; min-height: 230px; box-sizing: border-box; border-right: 1px solid #c9c9c3; border-bottom: 1px solid #c9c9c3; text-decoration: none; color: #111">
+        <span style="display: flex; justify-content: space-between">
+          <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36">{{c.cat}}</span>
+          <span style="font-family: Galmuri11, monospace; font-size: 11px">{{c.mark}}</span>
+        </span>
+        <span style="{{c.disc}}">{{c.init}}</span>
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 200; font-size: 32px; line-height: 1.05">{{c.name}}</span>
+        <span style="font-size: 14px">{{c.ko}}</span>
+        <span style="font-family: Galmuri11, monospace; font-size: 11px; color: #3a3a36; margin-top: auto">참여 {{c.p}} · 독립 {{c.i}} · 연대 {{c.s}}</span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#9dff3a","options":["#9dff3a","#ff7a2b","#5ee0ff"]},"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var accent = this.props.accent ?? '#9dff3a';
+    var D = [
+      ['Blender','Bl',3,3,3,1,'case'],['Godot','Go',3,3,3,1,'case'],['GIMP','Gi',3,2,3,0,'case'],['Krita','Kr',3,3,3,2,'case'],
+      ['Inkscape','In',3,2,3,1,'case'],['Scribus','Sc',3,2,3,0,'case'],['darktable','dt',3,2,3,0,'case'],['RawTherapee','RT',3,2,3,0,'case'],
+      ['Kdenlive','Kd',3,3,3,1,'case'],['Shotcut','Sh',2,2,2,0,'case'],['Friction','Fr',3,2,2,0,'case'],['Natron','Na',2,2,1,0,'grey'],
+      ['OpenToonz','OT',2,2,2,0,'case'],['Synfig','Sy',3,2,3,0,'case'],['Pencil2D','P2',3,2,3,0,'case'],['Ardour','Ar',3,2,2,0,'case'],
+      ['Audacity','Au',2,1,1,0,'grey'],['Penpot','Pe',2,1,1,0,'grey'],['Cavalry','Ca',1,0,0,0,'contrast'],['itch.io','it',2,1,2,2,'grey'],
+      ['Are.na','A.',3,2,2,2,'grey'],['Stocksy','St',2,3,1,2,'grey'],['Velvetyne','Ve',3,2,2,3,'case'],['Collletttivo','Co',2,2,2,1,'case'],
+      ['Pixelfed','Px',3,2,2,2,'case'],['Neocities','Ne',2,1,2,1,'case']
+    ];
+    var th = 38 * Math.PI / 180, ph = 22 * Math.PI / 180, S = 92, cx = 380, cy = 330;
+    function P(x, y, z) {
+      var X = x - 1.5, Y = z - 1.5, Z = y - 1.5;
+      var x1 = X * Math.cos(th) - Z * Math.sin(th);
+      var z1 = X * Math.sin(th) + Z * Math.cos(th);
+      var y2 = Y * Math.cos(ph) - z1 * Math.sin(ph);
+      var z2 = Y * Math.sin(ph) + z1 * Math.cos(ph);
+      return { x: cx + x1 * S, y: cy - y2 * S, d: z2 };
+    }
+    function seg(a, b) { var p = P(a[0], a[1], a[2]), q = P(b[0], b[1], b[2]); return 'M' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + 'L' + q.x.toFixed(1) + ' ' + q.y.toFixed(1); }
+    var cube = '', c = [0, 3];
+    for (var i = 0; i < 2; i++) for (var j = 0; j < 2; j++) {
+      cube += seg([0, c[i], c[j]], [3, c[i], c[j]]) + seg([c[i], 0, c[j]], [c[i], 3, c[j]]) + seg([c[i], c[j], 0], [c[i], c[j], 3]);
+    }
+    var mid = seg([1.5, 0, 0], [1.5, 3, 0]) + seg([0, 1.5, 0], [3, 1.5, 0]) + seg([1.5, 1.5, 0], [1.5, 1.5, 3]) + seg([0, 1.5, 1.5], [3, 1.5, 1.5]) + seg([1.5, 0, 1.5], [1.5, 3, 1.5]);
+    var groups = {}, pts = D.map(function (r) {
+      var p = { name: r[0], init: r[1], x: r[2], y: (r[3] + r[4]) / 2, z: r[5], layer: r[6] };
+      var k = p.x + '|' + p.y + '|' + p.z; (groups[k] = groups[k] || []).push(p); return p;
+    });
+    Object.keys(groups).forEach(function (k) {
+      var g = groups[k], n = g.length, r = n > 1 ? 14 + n * 4.5 : 0;
+      g.forEach(function (p, idx) { var a = (idx / n) * Math.PI * 2 - Math.PI / 2; p.ox = Math.cos(a) * r; p.oy = Math.sin(a) * r * 0.75; });
+    });
+    var dots = pts.map(function (p) {
+      var q = P(p.x, p.y, p.z), hot = p.name === 'Are.na';
+      var border = p.layer === 'contrast' ? '1.5px dashed #111' : '1px solid #111';
+      return {
+        name: p.name + (p.layer === 'grey' ? ' (회색지대)' : p.layer === 'contrast' ? ' (대조 사례)' : ''),
+        init: p.init, grey: p.layer === 'grey',
+        style: 'position:absolute;left:' + (q.x + p.ox - 21).toFixed(1) + 'px;top:' + (q.y + p.oy - 21).toFixed(1) + 'px;width:42px;height:42px;border-radius:999px;border:' + border + ';background:' + (hot ? accent : '#ffffff') + ';color:#111;font-family:\'Inter Tight\',sans-serif;font-weight:400;font-size:14px;display:flex;align-items:center;justify-content:center;padding:0;z-index:' + Math.round(200 + q.d * 20) + (hot ? ';box-shadow:0 0 0 3px #111' : '')
+      };
+    });
+    var pill = 'position:absolute;font-family:Galmuri11,monospace;font-size:11px;border:1px dashed #6b6b66;color:#3a3a36;border-radius:999px;padding:4px 10px;background:#f1f1ee;white-space:nowrap;';
+    var o1 = P(3, 3, 3.3), o2 = P(3, 3, 0), o3 = P(0.2, 0.2, 0);
+    var ax = P(3.25, 0, 0), ay = P(0, 3.3, 0), az = P(0, 0, 3.2);
+    var vals = [['소유', 2], ['재정', 2], ['개방', 0], ['참여', 3], ['연대', 2]];
+    var glyph = vals.map(function (v) {
+      return { k: v[0], v: v[1], bars: [0, 1, 2].map(function (i) { return 'width:100%;height:10px;' + (i < v[1] ? 'background:#111' : 'border:1px solid #111;box-sizing:border-box'); }) };
+    });
+    var rows = [
+      ['tool · 3d', '', 'Bl', 'Blender', '3D·영상·애니메이션', 3, 3, 1, 'case'],
+      ['tool · image', '', 'Kr', 'Krita', '디지털 페인팅', 3, 3, 2, 'case'],
+      ['sale', '◐', 'St', 'Stocksy', '스톡 사진 · 협동조합', 2, 2, 2, 'grey'],
+      ['social', '', 'Px', 'Pixelfed', '이미지 공유·소셜', 3, 2, 2, 'case']
+    ];
+    var cards = rows.map(function (r) {
+      return { cat: r[0], mark: r[1], init: r[2], name: r[3], ko: r[4], p: r[5], i: r[6], s: r[7],
+        disc: 'width:52px;height:52px;border-radius:999px;border:1px solid #111;background:#ffffff;display:flex;align-items:center;justify-content:center;font-family:\'Inter Tight\',sans-serif;font-size:16px' };
+    });
+    return {
+      accent: accent, cube: cube, mid: mid, dots: dots, glyph: glyph, cards: cards,
+      octants: [
+        { label: '운동하는 공유지', style: pill + 'left:' + (o1.x - 50).toFixed(0) + 'px;top:' + (o1.y - 34).toFixed(0) + 'px' },
+        { label: '조용한 공유지', style: pill + 'left:' + (o2.x + 40).toFixed(0) + 'px;top:' + (o2.y + 30).toFixed(0) + 'px' },
+        { label: '무료지만 자유롭지 않은', style: pill + 'left:' + (o3.x - 70).toFixed(0) + 'px;top:' + (o3.y + 24).toFixed(0) + 'px' }
+      ],
+      axes: [
+        { label: '참여 →', hint: '소비 ↔ 공동 제작', style: 'position:absolute;left:' + (ax.x - 60).toFixed(0) + 'px;top:' + (ax.y + 10).toFixed(0) + 'px;width:150px;text-align:right' },
+        { label: '독립 ↗', hint: '이윤 추출 ↔ 공동 소유', style: 'position:absolute;left:' + (ay.x - 10).toFixed(0) + 'px;top:' + (ay.y - 64).toFixed(0) + 'px;width:170px' },
+        { label: '연대 ↑', hint: '도구 안 ↔ 세계와 연대', style: 'position:absolute;left:' + (az.x - 60).toFixed(0) + 'px;top:' + (az.y - 62).toFixed(0) + 'px;width:170px' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

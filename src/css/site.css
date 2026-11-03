@@ -1,0 +1,661 @@
+/* Outer Maps — 토큰은 docs/design-guide.md 3장·5장을 그대로 옮긴다. 값은 여기서만 바꾼다. */
+:root {
+  --bg:        #f1f1ee;
+  --surface:   #ffffff;
+  --ink:       #111111;
+  --ink-soft:  #6b6b66;
+  --ink-label: #3a3a36;  /* 라벨: --ink-soft보다 진하게 (design-guide 2-1) */
+  --rule:      #c9c9c3;
+  --accent:    #9dff3a;  /* 선택·포커스·호버에만. 의미 구분에 쓰지 않는다 */
+  --on-accent: #111111;
+
+  --fs-display: 40px;
+  --fs-name:    28px;
+  --fs-body:    16px;
+  --fs-label:   12px;
+
+  --unit: 8px;
+  --pad:  16px;
+  --measure: 34em;
+
+  --font:         Pretendard, system-ui, sans-serif;
+  --font-display: Velvelyne, Pretendard, sans-serif;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --fs-display: 72px;
+    --fs-name:    36px;
+    --fs-body:    17px;
+    --pad:        24px;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a { color: var(--ink); text-underline-offset: 0.2em; }
+a:hover { color: var(--ink-label); }
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.2; }
+h2 { font-size: var(--fs-body); font-weight: 700; }
+
+/* Velvelyne 자리. 서체가 없으면 Pretendard 200으로 대체된다 (design-guide 2-1) */
+.display-en {
+  font-family: var(--font-display);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.label {
+  font-size: var(--fs-label);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-label);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  left: var(--pad);
+  top: -100px;
+  padding: var(--unit) calc(var(--unit) * 2);
+  background: var(--accent);
+  color: var(--on-accent);
+  z-index: 10;
+}
+.skip:focus { top: var(--unit); }
+
+/* 알약 */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: var(--fs-label);
+  line-height: 1.6;
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--surface);
+}
+.pill-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+/* 헤더 */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--unit) calc(var(--unit) * 2);
+  padding: calc(var(--unit) * 2) var(--pad);
+  border-bottom: 1px solid var(--rule);
+}
+.site-name {
+  font-size: var(--fs-name);
+  text-decoration: none;
+}
+.site-sub { font-size: 15px; color: var(--ink-label); }
+.site-header .version { margin-left: auto; color: var(--ink-soft); }
+
+.intro {
+  padding: calc(var(--unit) * 4) var(--pad) calc(var(--unit) * 3);
+  border-bottom: 1px solid var(--rule);
+}
+.intro h1 { font-size: var(--fs-name); font-weight: 700; }
+.intro p { max-width: var(--measure); margin: calc(var(--unit) * 2) 0 0; }
+
+/* 목록 */
+.list-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--unit);
+  padding: calc(var(--unit) * 3) var(--pad) calc(var(--unit) * 1.5);
+}
+.list-head h2 { font-size: 22px; }
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 339px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 900px)  { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.grid > li {
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+}
+
+/* 목록의 분류 앵커 (JS가 없을 때 모아보기 대신) */
+.list-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  padding: 0 var(--pad) calc(var(--unit) * 2);
+}
+.list-nav a { padding: 6px 2px; }
+.list-group-head {
+  padding: calc(var(--unit) * 2.5) var(--pad) calc(var(--unit) * 1.25);
+  font-size: var(--fs-body);
+  border-top: 1px solid var(--rule);
+}
+.list-group-head .label { margin-left: 4px; }
+.list-group .grid { border-top: 0; }
+.grid > li.grid-sub {
+  grid-column: 1 / -1;
+  padding: calc(var(--unit) * 1) var(--pad);
+  background: var(--bg);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--unit) * 1.5);
+  height: 100%;
+  min-height: 248px;
+  padding: var(--pad);
+  text-decoration: none;
+  color: var(--ink);
+}
+.card:hover { color: var(--ink); }
+.card:focus-visible { outline-offset: -4px; }
+.card:hover .disc,
+.card:focus-visible .disc { background: var(--accent); }
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--unit);
+  min-height: 24px;
+}
+.card-name { font-size: var(--fs-name); overflow-wrap: anywhere; }
+.card-ko { font-size: 14px; margin-top: -8px; }
+.card-meta { margin-top: auto; display: flex; flex-direction: column; }
+
+/* 아이콘 원판. 아이콘이 없으면 이니셜 (design-guide 4-4) */
+.disc {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  background: var(--surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: 18px;
+  transition: background-color 0.15s ease-in-out;
+}
+.disc-lg { width: 72px; height: 72px; font-size: 24px; }
+
+/* 대조 사례: 점선 테두리 + "대조" 알약. 색에만 의존하지 않는다 */
+.layer-contrast .disc { border: 1.5px dashed var(--ink); }
+
+.legend {
+  padding: calc(var(--unit) * 2) var(--pad) calc(var(--unit) * 4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--unit) calc(var(--unit) * 3);
+}
+
+/* 사례 페이지 */
+.crumbs { padding: calc(var(--unit) * 1.5) var(--pad); border-bottom: 1px solid var(--rule); }
+.crumbs a { display: inline-block; padding: 10px 0; }
+
+.case { max-width: 960px; }
+.case > section,
+.case-head {
+  padding: calc(var(--unit) * 3) var(--pad);
+  border-bottom: 1px solid var(--rule);
+}
+.case-head { display: flex; flex-direction: column; gap: calc(var(--unit) * 2); }
+.case-title { display: flex; gap: calc(var(--unit) * 2); align-items: center; }
+.case-name { font-size: var(--fs-display); overflow-wrap: anywhere; }
+.case-ko { margin: 4px 0 0; font-size: 15px; }
+.case > section > h2 { margin-bottom: calc(var(--unit) * 2); }
+.case p { max-width: var(--measure); }
+
+/* 지문 글리프: 다섯 축을 짧은 막대로. 레이더 차트는 쓰지 않는다 (build-guide 6장) */
+.glyph {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--unit);
+  max-width: 480px;
+}
+.glyph-axis { display: flex; flex-direction: column; gap: 6px; }
+.bars { display: flex; gap: 2px; }
+.bars i {
+  flex: 1;
+  height: 10px;
+  border: 1px solid var(--ink);
+  /* --f: 칸을 채운 비율 0~1 (독립 2.5처럼 반 칸도 그린다) */
+  background: linear-gradient(to right, var(--ink) calc(var(--f, 0) * 100%), transparent 0);
+}
+
+.facts { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); }
+.facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  padding: calc(var(--unit) * 1.25) 0;
+  border-top: 1px solid var(--rule);
+}
+.facts > div:first-child { border-top: 0; padding-top: 0; }
+.facts dt { font-size: var(--fs-label); color: var(--ink-label); }
+.facts dd { margin: 0; }
+@media (min-width: 640px) {
+  .facts > div { grid-template-columns: 9em minmax(0, 1fr); gap: calc(var(--unit) * 2); }
+  .facts dt { padding-top: 0.3em; }
+}
+
+.unverified {
+  text-decoration: underline dashed var(--ink-soft);
+  text-underline-offset: 0.25em;
+}
+
+.plain-list { list-style: none; margin: 0; padding: 0; }
+.plain-list > li { padding: var(--unit) 0; border-top: 1px solid var(--rule); }
+.plain-list > li:first-child { border-top: 0; padding-top: 0; }
+.rel-type { display: inline-block; min-width: 7em; }
+
+.sources a { overflow-wrap: anywhere; }
+
+.to-map {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 calc(var(--unit) * 2.5);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--surface);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+}
+.to-map:hover { color: var(--surface); }
+
+.site-footer {
+  padding: calc(var(--unit) * 3) var(--pad) calc(var(--unit) * 5);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 버튼 (알약) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 calc(var(--unit) * 2);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+.btn:hover { background: var(--accent); color: var(--on-accent); }
+.btn[aria-pressed="true"] { background: var(--accent); }
+.btn-ink { background: var(--ink); color: var(--surface); font-weight: 700; }
+.btn-ink:hover { background: var(--ink); color: var(--accent); }
+.btn:focus-visible, button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--accent);
+}
+
+/* ── 지도 ───────────────────────────────────────── */
+.map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 900px) {
+  .map { grid-template-columns: minmax(0, 1fr) 360px; }
+}
+
+/* 보기 전환 막대: 켜진 칩은 검정 알약, 꺼진 칩은 테두리 알약 (design-guide 4-1) */
+.map-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--unit) * 1.25) calc(var(--unit) * 3);
+  padding: calc(var(--unit) * 1.5) var(--pad);
+  border-bottom: 1px solid var(--rule);
+}
+.map-bar[hidden], .map-bar [hidden] { display: none; }
+.map-bar-group { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.map-bar-group > .label { color: var(--ink-soft); margin-right: 4px; }
+
+.chip {
+  min-height: 36px;
+  padding: 0 16px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+.chip:hover { background: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); font-weight: 700; }
+
+.map-bar-row { flex-basis: 100%; }
+.map-bar-sub { padding-left: 34px; }
+.chip-sm { min-height: 32px; padding: 0 12px; font-size: 13px; }
+.chip-n { font-variant-numeric: tabular-nums; opacity: 0.7; }
+
+/* 분류 보기의 구획 이름 */
+.block-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  white-space: nowrap;
+  transition: opacity 0.15s ease-in-out;
+}
+.block-label .pill { font-size: var(--fs-label); font-weight: 700; }
+.block-label.is-dim { opacity: 0.3; }
+
+.axis-pick { display: inline-flex; align-items: center; gap: 6px; }
+.axis-pick select {
+  min-height: 36px;
+  max-width: 62vw;
+  padding: 0 32px 0 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  appearance: none;
+  cursor: pointer;
+}
+.axis-pick select:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; box-shadow: 0 0 0 5px var(--accent); }
+
+.map-stage {
+  --disc: 44px;
+  position: relative;
+  height: clamp(440px, 70vh, 680px);
+  overflow: hidden;
+}
+.map-stage:focus-visible { outline: 2px solid var(--ink); outline-offset: -4px; }
+
+.map-static { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map-stage.is-live .map-static { display: none; }
+.svg-axis-line { fill: none; stroke: var(--ink); stroke-width: 1; }
+.svg-dot circle { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.svg-dot.layer-contrast circle { stroke-width: 1.5; stroke-dasharray: 4 3; }
+.svg-dot text { font-family: var(--font-display); font-weight: 400; font-size: 10px; fill: var(--ink); }
+.svg-dot .svg-badge { font-family: var(--font); font-size: 9px; }
+.svg-cell { font-size: 12px; fill: var(--ink-label); }
+.svg-axis { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.svg-hint { font-size: 12px; fill: var(--ink-label); }
+
+.map-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.map-labels, .map-focus { position: absolute; inset: 0; pointer-events: none; }
+
+/* 축 끝: 그 끝이 뜻하는 기준. 높은 끝은 검정 알약, 낮은 끝은 테두리 알약 */
+.axis-end {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 4px;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease-in-out;
+}
+.axis-end .pill { font-size: 13px; font-weight: 700; padding: 3px 11px; font-variant-numeric: tabular-nums; }
+.axis-end .pill-outline { background: var(--bg); }
+.axis-end .label { background: var(--bg); padding: 0 4px; border-radius: 999px; }
+.axis-end:hover .pill { background: var(--accent); color: var(--on-accent); border-color: var(--ink); }
+
+.tick-num {
+  font-size: var(--fs-label);
+  color: var(--ink-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.cell-label {
+  font-size: var(--fs-label);
+  line-height: 1.5;
+  color: var(--ink-label);
+  background: var(--bg);
+  border: 1px dashed var(--ink-soft);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.cell-label.is-unnamed { color: var(--ink-soft); }
+.cell-label.is-behind, .axis-end.is-behind { opacity: 0.3; }
+
+.contrast-tag .pill { display: inline-flex; padding: 0 6px; font-size: 10px; }
+
+.map-focus-btn {
+  position: absolute;
+  left: calc(var(--disc) / -2);
+  top: calc(var(--disc) / -2);
+  width: var(--disc);
+  height: var(--disc);
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+}
+.map-focus-btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  box-shadow: none;
+}
+
+.map-tip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: calc(var(--disc) / 2 + 8px) 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--ink);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 3;
+}
+.map-tip[hidden] { display: none; }
+.map-tip-name { font-size: 20px; }
+
+.map-tools {
+  position: absolute;
+  left: var(--pad);
+  bottom: var(--pad);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--unit);
+  max-width: calc(100% - 2 * var(--pad));
+}
+.map-tools[hidden], .map-tools [hidden] { display: none; }
+
+.why-link {
+  position: absolute;
+  right: var(--pad);
+  top: var(--pad);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-size: 14px;
+  text-decoration: none;
+}
+.map-stage[data-view="category"] .why-link { display: none; }
+.why-i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-size: var(--fs-label);
+}
+
+/* 사례 카드: 데스크톱은 오른쪽 패널 */
+.map-card {
+  background: var(--surface);
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--unit) * 2);
+  border-top: 1px solid var(--rule);
+}
+.map-card-empty { margin: 0; max-width: 28em; }
+.map-card-actions { display: flex; align-items: center; gap: 6px; }
+.card-close {
+  width: 44px;
+  height: 44px;
+  margin: -10px -12px -10px 0;
+  border: 0;
+  background: none;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink);
+}
+.map-card-name { font-size: var(--fs-name); }
+.map-card .case-ko { font-size: 15px; }
+.map-card-tagline { margin: 0; }
+.map-card-facts { margin: 0; }
+.map-card p.label { margin: 0; }
+.glyph-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 12px 0; max-width: none; }
+.map-card-links { display: flex; flex-wrap: wrap; gap: var(--unit); margin-top: auto; }
+.map-card-links .btn { flex: 1 1 120px; }
+.sheet-handle { display: none; }
+.disc-contrast { border: 1.5px dashed var(--ink); }
+
+@media (min-width: 900px) {
+  .map-card { border-top: 0; border-left: 1px solid var(--rule); }
+}
+
+/* 모바일: 아래에서 반쯤 올라오는 시트 (design-guide 4-6). 사이트에서 둥근 모서리를 쓰는 유일한 곳 */
+@media (max-width: 899px) {
+  .map-card {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    height: 58vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-top: 0;
+    border-top: 1px solid var(--ink);
+    border-radius: 8px 8px 0 0;
+    transform: translateY(105%);
+    visibility: hidden;
+    transition: transform 0.25s ease-in-out, height 0.25s ease-in-out, visibility 0s 0.25s;
+  }
+  .map-card.is-open {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.25s ease-in-out, height 0.25s ease-in-out;
+  }
+  .map-card.is-full { height: 92vh; }
+  .map-card.is-dragging { transition: none; }
+  .map-card-empty { display: none; }
+  .sheet-handle {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 6px;
+    margin: 0 calc(var(--pad) * -1);
+    cursor: grab;
+    touch-action: none;
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+  }
+  .sheet-handle span { width: 40px; height: 4px; border-radius: 999px; background: var(--ink-soft); }
+}
+
+/* 왜 이 세 축인가 */
+.why { margin-top: calc(var(--unit) * 3); max-width: 46em; border-top: 1px solid var(--rule); }
+.why summary {
+  cursor: pointer;
+  padding: calc(var(--unit) * 1.5) 0;
+  font-weight: 700;
+  min-height: 44px;
+}
+.why-body > p { margin: 0 0 calc(var(--unit) * 2); }
+.why .facts .label { display: block; margin-top: 4px; }
+.intro .why .pill { font-size: var(--fs-label); }
+
+/* 지도 가독성: 데이터 숫자를 그대로 옮긴 라벨을 일단 숨긴다 (2026-11-03).
+   칸 이름·개수, 축 끝의 점수, 분류 구획의 개수. 축 이름은 높은 끝에만 두고,
+   낮은 끝에는 그 끝의 기준만 적는다. 다시 보이려면 이 규칙을 지운다 */
+.cell-label,
+.axis-end-low .pill,
+.axis-score,
+.block-count,
+.svg-cell,
+.svg-axis-low { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
