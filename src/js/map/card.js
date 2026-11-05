@@ -13,8 +13,46 @@ function host(url) {
   try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; }
 }
 
-function bars(v) {
-  return [0, 1, 2].map((i) => `<i style="--f:${Math.min(1, Math.max(0, v - i))}"></i>`).join('');
+// 무료와 자유는 다르다: 쓸 권리의 근거가 라이선스인가, 운영 주체의 정책인가 (CLAUDE.md)
+function freedomNote(family) {
+  if (family === 'proprietary') return '자유 라이선스 아님 · 무료라면 운영 주체의 정책';
+  if (!family || family === 'unknown') return '';
+  return '쓰고 고치고 나눌 권리를 라이선스가 보장';
+}
+
+// 연대 근거를 한 문단으로. 확신도 "낮음"인 0점은 "근거를 못 찾음" (CLAUDE.md)
+function solidarityProse(p) {
+  const s = p.solidarity;
+  if (!s) return '';
+  if (s.confidence === '낮음' && p.score_solidarity === 0) {
+    return `창작 도구 바깥의 의제와 연대한 근거는 아직 찾지 못했다. 없음이 확인된 것은 아니다.${s.tension && s.tension !== UNVERIFIED ? ` (${esc(s.tension)})` : ''}`;
+  }
+  const end = (t) => (/[.。)]$/.test(t) ? t : `${t}.`);
+  const source = (s.source_solidarity || '').split(';').map((u) => u.trim()).filter(Boolean)[0];
+  return `${end(esc(s.evidence))}${s.tension ? ` 한계도 있다: ${end(val(s.tension))}` : ''} <span class="map-card-meta">연대 ${p.score_solidarity}/3 · 확신도 ${esc(s.confidence)}${source ? ` · <a href="${esc(source)}" rel="noopener">출처</a>` : ''}</span>`;
+}
+
+// 줄글: 소개(data/descriptions.csv)를 열 순서대로, 소개는 머리말 없이. 끝에 연대 근거와 출처.
+// 소개는 data.json에 없고 acf/{id}/description.json을 카드가 열릴 때 불러온다
+const DESC_PARTS = [['intro', ''], ['history', '역사'], ['now', '지금'], ['events', '주요 사건'], ['relations', '다른 플랫폼과의 관계']];
+const head = (label) => (label ? `<span class="prose-head">${label}</span> ` : '');
+
+function proseHTML(p, d) {
+  const parts = d ? DESC_PARTS.filter(([k]) => d[k]).map(([k, label]) => `<p>${head(label)}${esc(d[k])}</p>`) : [];
+  if (p.solidarity) parts.push(`<p>${head('연대')}${solidarityProse(p)}</p>`);
+  if (d?.sources?.length) {
+    const links = d.sources.map((u) => `<a href="${esc(u)}" rel="noopener">${esc(host(u))}</a>`).join(' · ');
+    parts.push(`<p class="map-card-meta">출처 ${links}${d.checked ? ` · ${esc(d.checked)} 확인` : ''}</p>`);
+  }
+  return parts.join('');
+}
+
+const descCache = new Map();
+function loadDescription(id) {
+  if (!descCache.has(id)) {
+    descCache.set(id, fetch(`acf/${id}/description.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null));
+  }
+  return descCache.get(id);
 }
 
 function cardHTML(p, labels) {
@@ -22,8 +60,18 @@ function cardHTML(p, labels) {
   const axes = [['참여', o.x], ['독립', o.y], ['연대', o.z]];
   const layer = p.layer === 'grey' ? '<span class="pill pill-outline"><span aria-hidden="true">◐</span> 회색지대</span>'
     : p.layer === 'contrast' ? '<span class="pill">대조</span>' : '';
-  const license = [p.license && val(p.license), labels.licenseFamily[p.license_family], p.funding && val(p.funding)]
+  const owner = [p.owner && esc(p.owner), labels.ownership[p.ownership_type]].filter(Boolean).join(' · ');
+  const license = [p.license && val(p.license), p.license_family !== 'unknown' && labels.licenseFamily[p.license_family]]
     .filter(Boolean).join(' · ');
+  const note = freedomNote(p.license_family);
+  const rows = [
+    ['누가', owner],
+    ['라이선스', license + (note ? `<br><span class="map-card-meta">${note}</span>` : '')],
+    ['재정', p.funding && val(p.funding)],
+    ['맞서는 것', p.alt_target && val(p.alt_target)],
+    ['칸', esc(octantLabel(o))],
+  ].filter(([, v]) => v);
+  const prose = proseHTML(p, null);
   // 다운로드 버튼은 download_url 열이 생기면 넣는다
   const download = p.download_url ? `<a class="btn" href="${esc(p.download_url)}" rel="noopener">다운로드</a>` : '';
   return `<div class="sheet-handle" aria-hidden="true"><span></span></div>
@@ -39,10 +87,10 @@ function cardHTML(p, labels) {
   </div>
 </div>
 ${p.tagline ? `<p class="map-card-tagline">${esc(p.tagline)}</p>` : ''}
-<div class="glyph glyph-3" aria-hidden="true">${axes.map(([k, v]) =>
-  `<div class="glyph-axis"><span class="label">${k}</span><span class="bars">${bars(v)}</span><span class="label">${fmt(v)} / 3</span></div>`).join('')}</div>
-<p class="label">${axes.map(([k, v]) => `${k} ${fmt(v)}`).join(' · ')}</p>
-<p class="label map-card-facts">칸: ${esc(octantLabel(o))}<br>${license}</p>
+<dl class="score-rows" aria-label="${axes.map(([k, v]) => `${k} ${fmt(v)}`).join(', ')} (각 0~3)">${axes.map(([k, v]) =>
+  `<div><dt>${k}</dt><dd><span class="score-bar" style="--f:${v / 3}" aria-hidden="true"></span><span class="score-n">${fmt(v)}</span></dd></div>`).join('')}</dl>
+<dl class="card-table">${rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+<div class="map-card-prose">${prose}</div>
 <div class="map-card-links">
   ${p.url ? `<a class="btn" href="${esc(p.url)}" rel="noopener">공식 사이트<span class="visually-hidden"> ${esc(host(p.url))}</span></a>` : ''}
   ${download}
@@ -63,6 +111,10 @@ export function createCard(aside, data, { onClose }) {
     aside.querySelector('.card-close').addEventListener('click', () => onClose());
     bindHandle(aside.querySelector('.sheet-handle'));
     if (focus) aside.querySelector('.map-card-name').focus({ preventScroll: !mobile.matches });
+    // 소개 줄글이 오면 연대 문단 앞에 채운다. 그사이 다른 카드를 열었으면 버린다
+    loadDescription(p.id).then((d) => {
+      if (d && current === p) aside.querySelector('.map-card-prose').innerHTML = proseHTML(p, d);
+    });
   }
 
   function close() {

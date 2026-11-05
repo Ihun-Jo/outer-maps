@@ -56,6 +56,10 @@ CSV를 고치면 빌드 스크립트의 검사(점수 범위, id 연결)를 통�
 
 `score_solidarity`의 근거. `id`, `name`, `confidence`(높음/중/낮음), `evidence`, `tension`(한계·모순), `source_solidarity`(출처 URL, ` ; `로 구분). 사례 페이지에서 연대 근거와 출처로 보여 준다. 확신도 "낮음"인 0점은 "근거를 못 찾음"이라고 표기한다.
 
+### `data/descriptions.csv`
+
+사례 페이지의 소개 줄글. `id`, `name`, `intro`(무엇을 위한 곳인가), `history`(역사), `now`(지금의 운영), `events`(주요 사건), `relations`(다른 플랫폼과의 관계), `sources`(출처 URL, ` ; `로 구분), `checked`(확인 날짜). 일반 독자가 읽을 수 있게 칸마다 두세 문장으로 쓴다. 확인하지 못한 사실은 쓰지 않고, 근거가 없으면 칸을 비운다 (화면에서 소제목째 생략). 지도용 `data.json`에는 넣지 않는다. 지도 카드는 사례마다 따로 내보낸 `site/acf/{id}/description.json`을 카드가 열릴 때 불러온다.
+
 ### `data/nodes_external.csv`
 
 구름 속 툴·서비스(`cloud-tool`, `cloud-service`), 기타 독점 서비스, 기업 등 사례가 아닌 노드. 관계도와 대응표에 쓴다.

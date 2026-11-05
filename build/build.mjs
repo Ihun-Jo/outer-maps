@@ -105,6 +105,8 @@ const [platformsRaw, solidarityRows, nodes, relations] = await Promise.all([
   readCSV('nodes_external.csv'),
   readCSV('relations.csv'),
 ]);
+// 사례 소개 줄글 (선택). 파일이 없으면 소개 섹션을 생략한다
+const descriptionRows = existsSync(join(DATA, 'descriptions.csv')) ? await readCSV('descriptions.csv') : [];
 
 const platformIds = new Set();
 for (const p of platformsRaw) {
@@ -145,6 +147,9 @@ for (const r of relations) {
 for (const s of solidarityRows) {
   if (!platformIds.has(s.id)) errors.push(`solidarity_evidence.csv: id "${s.id}"가 platforms.csv에 없음`);
 }
+for (const d of descriptionRows) {
+  if (!platformIds.has(d.id)) errors.push(`descriptions.csv: id "${d.id}"가 platforms.csv에 없음`);
+}
 
 // 아직 없는 열 (CLAUDE.md, build-guide 7장): 화면에서 생략하고 경고만
 const columns = Object.keys(platformsRaw[0] ?? {});
@@ -163,6 +168,7 @@ if (errors.length) {
 // ── 파생 값 ────────────────────────────────────────
 
 const solidarityById = new Map(solidarityRows.map((s) => [s.id, s]));
+const descriptionById = new Map(descriptionRows.map((d) => [d.id, d]));
 
 const platforms = platformsRaw.map((raw) => {
   const p = { ...raw };
@@ -171,6 +177,7 @@ const platforms = platformsRaw.map((raw) => {
   const point = octantPoint(p);
   p.octant = { ...point, ...octantOf(point) };
   p.solidarity = solidarityById.get(p.id) ?? null;
+  p.description = descriptionById.get(p.id) ?? null;
   p.icon = missingIcons.includes(p.id) ? null : `icons/${p.id}.svg`;
   return p;
 });
@@ -494,6 +501,28 @@ function solidaritySection(p) {
 </dl>`;
 }
 
+// 소개 줄글: 빈 칸은 소제목째 생략한다
+const DESCRIPTION_PARTS = [
+  { key: 'intro', ko: '무엇을 위한 곳인가' },
+  { key: 'history', ko: '역사' },
+  { key: 'now', ko: '지금은 어떻게 운영되나' },
+  { key: 'events', ko: '주요 사건' },
+  { key: 'relations', ko: '다른 플랫폼과의 관계' },
+];
+
+function descriptionSection(p) {
+  const d = p.description;
+  if (!d) return '';
+  const parts = DESCRIPTION_PARTS.filter(({ key }) => d[key]).map(({ key, ko }) =>
+    `<h3 class="label">${ko}</h3>\n    <p>${esc(d[key])}</p>`);
+  const sources = splitList(d.sources);
+  return `<section aria-labelledby="about" class="about">
+    <h2 id="about">소개</h2>
+    ${parts.join('\n    ')}
+    ${sources.length ? `<p class="label">참고: ${sources.map((u) => link(u, host(u))).join(' · ')}${d.checked ? ` · ${esc(d.checked)} 확인` : ''}</p>` : ''}
+  </section>`;
+}
+
 function casePage(p) {
   const base = '../../';
   const counterparts = p.cloud_counterparts.map(nameOf).map(esc).join(', ');
@@ -523,6 +552,8 @@ function casePage(p) {
     </div>
     <p class="label">칸: ${esc(octantLabel(p.octant))}<br>${threeAxes(p)}</p>
   </header>
+
+  ${descriptionSection(p)}
 
   <section aria-labelledby="axes">
     <h2 id="axes">다섯 축</h2>
@@ -657,7 +688,18 @@ await cp(join(SRC, 'vendor'), join(OUT, 'vendor'), { recursive: true });
 if (existsSync(join(SRC, 'icons'))) await cp(join(SRC, 'icons'), join(OUT, 'icons'), { recursive: true });
 
 await write('index.html', indexPage());
-for (const p of platforms) await write(`acf/${p.id}/index.html`, casePage(p));
+for (const p of platforms) {
+  await write(`acf/${p.id}/index.html`, casePage(p));
+  // 지도 카드는 카드를 열 때 이 사례의 소개 줄글만 따로 불러온다 (data.json을 가볍게)
+  if (p.description) {
+    const d = p.description;
+    await write(`acf/${p.id}/description.json`, JSON.stringify({
+      ...Object.fromEntries(DESCRIPTION_PARTS.map(({ key }) => [key, d[key] ?? ''])),
+      sources: splitList(d.sources ?? ''),
+      checked: d.checked ?? '',
+    }));
+  }
+}
 
 await write('data.json', JSON.stringify({
   version: VERSION,
@@ -665,9 +707,10 @@ await write('data.json', JSON.stringify({
   labels: {
     kind: KIND,
     licenseFamily: LICENSE_FAMILY,
+    ownership: OWNERSHIP,
     layer: Object.fromEntries(Object.entries(LAYER).map(([k, v]) => [k, v.ko])),
   },
-  platforms,
+  platforms: platforms.map(({ description, ...rest }) => rest), // 소개 줄글은 사례 페이지에만 (지도 JSON을 가볍게)
   nodes,
   relations,
 }, null, 2));

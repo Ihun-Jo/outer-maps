@@ -584,6 +584,33 @@ h2 { font-size: var(--fs-body); font-weight: 700; }
 .map-card-tagline { margin: 0; }
 .map-card-facts { margin: 0; }
 .map-card p.label { margin: 0; }
+/* 카드: 점수는 축마다 한 줄 바(0~3을 쭉 채움), 그 아래 표와 줄글. 표·줄글 글자 크기는 하나로 */
+.map-card { --card-fs: 14px; }
+.score-rows { margin: 0; display: grid; gap: 4px; }
+.score-rows > div { display: grid; grid-template-columns: 3em minmax(0, 1fr) 2.2em; align-items: center; gap: 8px; }
+.score-rows dt, .score-rows dd { margin: 0; font-size: var(--fs-label); color: var(--ink-label); }
+.score-rows dd { display: contents; }
+.score-bar {
+  height: 4px;
+  background: linear-gradient(to right, var(--ink) calc(var(--f) * 100%), var(--rule) 0);
+}
+.score-n { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+
+.card-table { margin: 0; border-top: 1px solid var(--rule); }
+.card-table > div {
+  display: grid;
+  grid-template-columns: 5.5em minmax(0, 1fr);
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.card-table dt, .card-table dd { margin: 0; font-size: var(--card-fs); line-height: 1.55; }
+.card-table dt { color: var(--ink-label); }
+.map-card-prose p { margin: 0 0 8px; font-size: var(--card-fs); line-height: 1.7; }
+.map-card-meta { color: var(--ink-label); font-size: inherit; }
+.prose-head { font-weight: 700; margin-right: 2px; }
+.map-card-meta a { color: inherit; }
+
 .glyph-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 12px 0; max-width: none; }
 .map-card-links { display: flex; flex-wrap: wrap; gap: var(--unit); margin-top: auto; }
 .map-card-links .btn { flex: 1 1 120px; }
@@ -659,3 +686,8 @@ h2 { font-size: var(--fs-body); font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* 사례 페이지 소개 줄글 */
+.about h3 { margin: calc(var(--unit) * 3) 0 var(--unit); font-weight: inherit; }
+.about h3:first-of-type { margin-top: 0; }
+.about p + p.label { margin-top: calc(var(--unit) * 3); }
