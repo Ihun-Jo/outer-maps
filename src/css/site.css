@@ -114,20 +114,24 @@ h2 { font-size: var(--fs-body); font-weight: 700; }
 }
 
 /* 헤더 */
+/* 이름 한 줄, 그 아래 작은 부제. 첫 화면은 이름을 크게 */
 .site-header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--unit) calc(var(--unit) * 2);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: calc(var(--unit) * 2);
   padding: calc(var(--unit) * 2) var(--pad);
   border-bottom: 1px solid var(--rule);
 }
+.site-title { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .site-name {
   font-size: var(--fs-name);
   text-decoration: none;
 }
-.site-sub { font-size: 15px; color: var(--ink-label); }
-.site-header .version { margin-left: auto; color: var(--ink-soft); }
+.site-header.is-home { padding-top: calc(var(--unit) * 3); padding-bottom: calc(var(--unit) * 2.5); }
+.site-header.is-home .site-name { font-size: var(--fs-display); }
+.site-sub { font-size: 13px; color: var(--ink-label); }
+.site-header .version { color: var(--ink-soft); }
 
 .intro {
   padding: calc(var(--unit) * 4) var(--pad) calc(var(--unit) * 3);
@@ -369,7 +373,7 @@ h2 { font-size: var(--fs-body); font-weight: 700; }
   align-items: center;
   gap: calc(var(--unit) * 1.25) calc(var(--unit) * 3);
   padding: calc(var(--unit) * 1.5) var(--pad);
-  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
 }
 .map-bar[hidden], .map-bar [hidden] { display: none; }
 .map-bar-group { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
@@ -534,10 +538,8 @@ h2 { font-size: var(--fs-body); font-weight: 700; }
 }
 .map-tools[hidden], .map-tools [hidden] { display: none; }
 
+/* 보기 막대 맨 끝 (지도 아래) */
 .why-link {
-  position: absolute;
-  right: var(--pad);
-  top: var(--pad);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -545,7 +547,7 @@ h2 { font-size: var(--fs-body); font-weight: 700; }
   font-size: 14px;
   text-decoration: none;
 }
-.map-stage[data-view="category"] .why-link { display: none; }
+.map[data-view="category"] .why-link { display: none; }
 .why-i {
   display: inline-flex;
   align-items: center;

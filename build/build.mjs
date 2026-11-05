@@ -237,7 +237,7 @@ function glyph(p) {
 const MAP_SCRIPTS = `<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
 <script type="module" src="js/map/main.js"></script>`;
 
-function page({ title, description, base, body, head = '' }) {
+function page({ title, description, base, body, head = '', home = false }) {
   return `<!doctype html>
 <html lang="ko">
 <head>
@@ -251,9 +251,11 @@ ${head}
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
-<header class="site-header">
-  <a class="site-name display-en" href="${base}index.html">Outer Maps</a>
-  <span class="site-sub">창의적 구름, 그 너머를 상상하는 대안적 플랫폼 지도</span>
+<header class="site-header${home ? ' is-home' : ''}">
+  <div class="site-title">
+    <a class="site-name display-en" href="${base}index.html">Outer Maps</a>
+    <span class="site-sub">창의적 구름, 그 너머를 상상하는 대안적 플랫폼 지도</span>
+  </div>
   <span class="label version">${VERSION}</span>
 </header>
 <main id="main">
@@ -396,24 +398,23 @@ function mapBar() {
     </div>
     <div class="map-bar-group map-bar-row" role="group" aria-label="모아보기 (여러 개 고를 수 있음)"><span class="label">모아</span><button type="button" class="chip chip-sm" data-cat="" aria-pressed="true">전체 <span class="chip-n">${platforms.length}</span></button>${cats}</div>
     <div class="map-bar-group map-bar-row map-bar-sub" data-sub-row role="group" aria-label="창작 도구 하위 분류" hidden><span class="label">└ 창작 도구</span>${subs}</div>
+    <a class="why-link" href="#why" data-action="why"><span class="why-i" aria-hidden="true">i</span>왜 이 세 축인가?</a>
   </div>`;
 }
 
+// 첫 화면은 지도부터. 보기·모아보기 막대와 "왜 이 세 축인가"는 지도 아래에 둔다
 function mapSection() {
   return `<section class="map" aria-label="지도">
-  ${mapBar()}
-  <div class="map-stage" id="map-stage" tabindex="0" aria-label="지도. 8분면에서는 화살표 키로 돌리고, Tab으로 사례를 고른다.">
+  <div class="map-stage" id="map-stage" tabindex="0" aria-label="지도. 8분면에서는 끌거나 화살표 키로 돌리고, Tab으로 사례를 고른다.">
     ${octantSvg()}
     <div class="map-tools" hidden>
-      <button type="button" class="btn" data-action="explore" aria-pressed="false" hidden>둘러보기</button>
       <button type="button" class="btn" data-action="rotate">회전 멈추기</button>
-      <button type="button" class="btn" data-action="reset">정면에서 보기</button>
     </div>
-    <a class="why-link" href="#why" data-action="why"><span class="why-i" aria-hidden="true">i</span>왜 이 세 축인가?</a>
   </div>
   <aside class="map-card" id="map-card" aria-label="사례 카드">
     <p class="map-card-empty label">아이콘에 마우스를 올리면 이름이, 누르면 사례 카드가 여기 열린다. 키보드로는 Tab으로 사례를 고르고 Enter로 연다.</p>
   </aside>
+  ${mapBar()}
 </section>`;
 }
 
@@ -462,6 +463,7 @@ function indexPage() {
     base: '',
     body,
     head: MAP_SCRIPTS,
+    home: true,
   });
 }
 

@@ -590,8 +590,9 @@ export function createScene(stage, data) {
   });
   canvas.addEventListener('pointerleave', () => { if (hoverId) hooks.hover?.(null); });
 
-  // 터치 기기에서는 캔버스 터치를 페이지 스크롤에 양보하고, 둘러보기를 켤 때만 회전 (build-guide 4-6)
-  let exploring = false;
+  // 둘러보기(손가락으로 돌리기)가 기본으로 켜져 있다 (2026-11-05 사람이 정함. build-guide 4-6은 터치를
+  // 스크롤에 양보하라고 했지만, 지도를 바로 돌려 보게 하는 쪽을 택함). 모바일에서는 지도 밖을 끌어 스크롤한다
+  let exploring = true;
   function setExplore(on) {
     exploring = on;
     const active = state.view === 'octant' && !anim && (on || !coarse);

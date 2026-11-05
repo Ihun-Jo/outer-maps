@@ -10,9 +10,7 @@ const fmt = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 export function bindControls({ stage, bar, map, card, data }) {
   const byId = new Map(data.platforms.map((p) => [p.id, p]));
   const tools = stage.querySelector('.map-tools');
-  const exploreBtn = tools.querySelector('[data-action="explore"]');
   const rotateBtn = tools.querySelector('[data-action="rotate"]');
-  const resetBtn = tools.querySelector('[data-action="reset"]');
   let selected = null;
   let filter = { cats: [], subs: [] };
 
@@ -69,7 +67,6 @@ export function bindControls({ stage, bar, map, card, data }) {
     selected = null;
     map.setSelected(null);
     card.close();
-    if (exploreBtn.getAttribute('aria-pressed') === 'true') setExplore(false);  // 카드를 닫으면 둘러보기도 끈다
     if (write) writeHash();
     if (restoreFocus && was) focusButtons.get(was)?.focus();
   }
@@ -94,11 +91,9 @@ export function bindControls({ stage, bar, map, card, data }) {
     // 같은 축을 가로·세로에 함께 고를 수 없다
     for (const o of pickY.options) o.disabled = o.value === st.x;
     for (const o of pickX.options) o.disabled = st.view === 'slice' && o.value === st.y;
-    const octant = st.view === 'octant';
-    exploreBtn.hidden = !octant || !map.coarse;
-    rotateBtn.hidden = !octant || map.reducedMotion();
-    resetBtn.hidden = !octant;
+    rotateBtn.hidden = st.view !== 'octant' || map.reducedMotion();
     stage.dataset.view = st.view;
+    bar.parentElement.dataset.view = st.view;
   }
 
   function changeView(next) {
@@ -224,21 +219,12 @@ export function bindControls({ stage, bar, map, card, data }) {
   tools.hidden = false;
   bar.hidden = false;
 
-  function setExplore(on) {
-    exploreBtn.setAttribute('aria-pressed', String(on));
-    exploreBtn.textContent = on ? '둘러보기 끄기' : '둘러보기';
-    map.setExplore(on);
-  }
-  exploreBtn.addEventListener('click', () => setExplore(exploreBtn.getAttribute('aria-pressed') !== 'true'));
-
   let paused = false;
   rotateBtn.addEventListener('click', () => {
     paused = !paused;
     rotateBtn.textContent = paused ? '다시 돌리기' : '회전 멈추기';
     map.setPaused(paused);
   });
-  resetBtn.addEventListener('click', () => map.resetView());
-
   // 축 끝 라벨과 ⓘ는 "왜 이 세 축인가"를 연다
   const why = document.getElementById('why');
   const openWhy = (e) => {
@@ -247,7 +233,7 @@ export function bindControls({ stage, bar, map, card, data }) {
     why.scrollIntoView({ behavior: map.reducedMotion() ? 'auto' : 'smooth', block: 'start' });
     why.querySelector('summary').focus({ preventScroll: true });
   };
-  stage.querySelector('[data-action="why"]').addEventListener('click', openWhy);
+  bar.querySelector('[data-action="why"]').addEventListener('click', openWhy);
   map.on('why', openWhy);
 
   // ── 해시에서 상태 읽기: 처음 들어올 때, 뒤로 가기, 사례 페이지의 "지도에서 보기"(/#focus=id) ──
